@@ -19,23 +19,17 @@ macOS notifications for [Claude Code](https://claude.com/claude-code) that switc
 
 ## Install
 
-Via marketplace (once published):
+In Claude Code:
 
 ```
 /plugin marketplace add ddzero2c/claude-tmux-notifier
 /plugin install claude-tmux-notifier@ddzero2c
 ```
 
-Or locally for development:
+For local development, point `marketplace add` at a clone instead:
 
 ```
-git clone https://github.com/ddzero2c/claude-tmux-notifier ~/repo/claude-tmux-notifier
-```
-
-Then in Claude Code:
-
-```
-/plugin marketplace add ~/repo/claude-tmux-notifier
+/plugin marketplace add ~/path/to/claude-tmux-notifier
 /plugin install claude-tmux-notifier
 ```
 
