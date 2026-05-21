@@ -31,7 +31,7 @@ case "$mode" in
     icon="${CLAUDE_PLUGIN_ROOT:-}/assets/claude.png"
     [[ -f $icon ]] || icon=""
 
-    bundle_id="${CLAUDE_NOTIFIER_BUNDLE_ID:-com.mitchellh.ghostty}"
+    bundle_id="${CLAUDE_NOTIFIER_BUNDLE_ID:-${__CFBundleIdentifier:-}}"
 
     if [[ -n ${TMUX:-} && -n ${TMUX_PANE:-} ]] && command -v tmux >/dev/null 2>&1; then
       session=$(tmux display-message -t "$TMUX_PANE" -p '#S')
@@ -43,7 +43,6 @@ case "$mode" in
         -title "TMUX($session)"
         -message "$msg"
         -group "claude-$sid"
-        -activate "$bundle_id"
         -execute "$execute_cmd"
       )
     else
@@ -51,10 +50,10 @@ case "$mode" in
         -title "Terminal"
         -message "$msg"
         -group "claude-$sid"
-        -activate "$bundle_id"
       )
     fi
 
+    [[ -n $bundle_id ]] && args+=(-activate "$bundle_id")
     [[ -n $icon ]] && args+=(-contentImage "$icon")
 
     terminal-notifier "${args[@]}" >/dev/null 2>&1 || true

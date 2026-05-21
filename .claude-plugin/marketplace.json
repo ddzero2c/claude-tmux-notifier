@@ -9,7 +9,7 @@
     {
       "name": "claude-tmux-notifier",
       "description": "macOS notifications for Claude Code that switch you back to the right tmux pane when clicked.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": "./",
       "author": {
         "name": "Ryder",

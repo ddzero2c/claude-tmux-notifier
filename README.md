@@ -13,9 +13,9 @@ macOS notifications for [Claude Code](https://claude.com/claude-code) that switc
 
 - macOS (uses `terminal-notifier`)
 - [`terminal-notifier`](https://github.com/julienXX/terminal-notifier): `brew install terminal-notifier`
-- `tmux` (optional — if running outside tmux, click-to-focus falls back to just opening Ghostty)
+- `tmux` (optional — with tmux, click-to-focus switches the tmux client back to the originating session+pane; without tmux, click just opens the terminal app)
 - `jq` (for parsing hook payloads; usually preinstalled, otherwise `brew install jq`)
-- [Ghostty](https://ghostty.org) — the terminal opened on click. To use a different terminal, set `CLAUDE_NOTIFIER_BUNDLE_ID` to your terminal's bundle id (e.g. `com.googlecode.iterm2`, `com.apple.Terminal`).
+- A macOS terminal app — the click-to-focus target is auto-detected from `$__CFBundleIdentifier` (set by macOS to the bundle id of the app that launched the process). Works with Ghostty, iTerm2, Terminal.app, WezTerm, etc., out of the box. To override, set `CLAUDE_NOTIFIER_BUNDLE_ID` (e.g. `com.googlecode.iterm2`).
 
 ## Install
 
