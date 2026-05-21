@@ -7,10 +7,7 @@
     "email": "ddzero2c@gmail.com"
   },
   "homepage": "https://github.com/ddzero2c/claude-tmux-notifier",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ddzero2c/claude-tmux-notifier"
-  },
+  "repository": "https://github.com/ddzero2c/claude-tmux-notifier",
   "license": "MIT",
   "keywords": ["tmux", "notifications", "macos", "terminal-notifier", "hooks"]
 }
