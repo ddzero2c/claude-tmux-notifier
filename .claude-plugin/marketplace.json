@@ -1,6 +1,6 @@
 {
-  "name": "claude-tmux-notifier",
-  "description": "macOS notifications for Claude Code that switch you back to the right tmux pane when clicked.",
+  "name": "ddzero2c",
+  "description": "Ryder's Claude Code plugins.",
   "owner": {
     "name": "Ryder",
     "email": "ddzero2c@gmail.com"
