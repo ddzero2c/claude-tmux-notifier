@@ -7,7 +7,7 @@ macOS notifications for [Claude Code](https://claude.com/claude-code) that switc
 - **Stop**: when Claude finishes a turn, you get a `"Done, waiting for input"` notification.
 - **Permission prompt**: when Claude needs your approval, you get a notification with the prompt message.
 - **Auto-clear**: notifications are dismissed when you interact with Claude again (next prompt, tool use, or session end).
-- **Click-to-focus**: clicking a notification opens Ghostty and switches your tmux client to the originating session and pane.
+- **Click-to-focus**: clicking a notification activates your terminal app (auto-detected) and switches your tmux client to the originating session and pane.
 
 ## Requirements
 
