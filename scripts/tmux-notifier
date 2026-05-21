@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+set -e
+
+mode="${1:-}"
+override_msg="${2:-}"
+
+if [[ -z $mode ]]; then
+  echo "usage: tmux-notifier <notify|clear> [message]" >&2
+  exit 2
+fi
+
+if ! command -v terminal-notifier >/dev/null 2>&1; then
+  exit 0
+fi
+
+input=$(cat)
+sid=$(printf '%s' "$input" | jq -r '.session_id // "default"')
+
+case "$mode" in
+  clear)
+    terminal-notifier -remove "claude-$sid" >/dev/null 2>&1 || true
+    ;;
+
+  notify)
+    if [[ -n $override_msg ]]; then
+      msg="$override_msg"
+    else
+      msg=$(printf '%s' "$input" | jq -r '.message // "Claude"')
+    fi
+
+    icon="${CLAUDE_PLUGIN_ROOT:-}/assets/claude.png"
+    [[ -f $icon ]] || icon=""
+
+    bundle_id="${CLAUDE_NOTIFIER_BUNDLE_ID:-com.mitchellh.ghostty}"
+
+    if [[ -n ${TMUX:-} && -n ${TMUX_PANE:-} ]] && command -v tmux >/dev/null 2>&1; then
+      session=$(tmux display-message -t "$TMUX_PANE" -p '#S')
+      client=$(tmux display-message -t "$TMUX_PANE" -p '#{client_tty}')
+      tmux_bin=$(command -v tmux)
+      execute_cmd=$(printf '%q switch-client -c %q -t %q' "$tmux_bin" "$client" "$TMUX_PANE")
+
+      args=(
+        -title "TMUX($session)"
+        -message "$msg"
+        -group "claude-$sid"
+        -activate "$bundle_id"
+        -execute "$execute_cmd"
+      )
+    else
+      args=(
+        -title "Terminal"
+        -message "$msg"
+        -group "claude-$sid"
+        -activate "$bundle_id"
+      )
+    fi
+
+    [[ -n $icon ]] && args+=(-contentImage "$icon")
+
+    terminal-notifier "${args[@]}" >/dev/null 2>&1 || true
+    ;;
+
+  *)
+    echo "unknown mode: $mode" >&2
+    exit 2
+    ;;
+esac
