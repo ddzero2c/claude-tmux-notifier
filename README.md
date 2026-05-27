@@ -38,9 +38,13 @@ For local development, point `marketplace add` at a clone instead:
 | Event | Behavior |
 |---|---|
 | `Stop` | Notify "Done, waiting for input" |
+| `StopFailure` | Notify "Turn failed (`error_type`)" when a turn ends on an API error |
 | `Notification` (matcher: `permission_prompt`) | Notify with the prompt message |
+| `Notification` (matcher: `idle_prompt`) | Notify when Claude is idle waiting for input |
+| `Elicitation` | Notify "Needs your input" when an MCP server requests input |
 | `PreToolUse` | Clear the session's notification |
 | `UserPromptSubmit` | Clear the session's notification |
+| `SessionStart` (matcher: `resume`) | Clear stale notifications when resuming a session |
 | `SessionEnd` | Clear the session's notification |
 
 Notifications are grouped by `claude-<session_id>`, so each Claude session has at most one outstanding notification at a time.

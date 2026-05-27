@@ -25,7 +25,7 @@ case "$mode" in
     if [[ -n $override_msg ]]; then
       msg="$override_msg"
     else
-      msg=$(printf '%s' "$input" | jq -r '.message // "Claude"')
+      msg=$(printf '%s' "$input" | jq -r 'if .error_type then "Turn failed (\(.error_type))" else (.message // "Claude") end')
     fi
 
     icon="${CLAUDE_PLUGIN_ROOT:-}/assets/claude.png"
