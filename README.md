@@ -42,7 +42,9 @@ For local development, point `marketplace add` at a clone instead:
 | `Notification` (matcher: `permission_prompt`) | Notify with the prompt message |
 | `Notification` (matcher: `idle_prompt`) | Notify when Claude is idle waiting for input |
 | `Elicitation` | Notify "Needs your input" when an MCP server requests input |
+| `ElicitationResult` | Clear the session's notification once you answer the elicitation |
 | `PreToolUse` | Clear the session's notification |
+| `PostToolUse` | Clear the session's notification after a tool runs (e.g. after you approve a permission prompt) |
 | `UserPromptSubmit` | Clear the session's notification |
 | `SessionStart` (matcher: `resume`) | Clear stale notifications when resuming a session |
 | `SessionEnd` | Clear the session's notification |
